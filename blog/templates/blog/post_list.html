@@ -1,26 +1,22 @@
-<html>
-	<head>
-		<title> Django Girls blog </title>
-	</head>
+{% extends 'blog/base.html' %}
 
-	<body>
+	{% block content %}
 
-		<div>
-			<h1><a href=""> Django Girls Blog</a></h1>
-		</div>
 
-			{% for post in posts %}
-			{{post}}
-			
+				{% for post in posts %}
 
-		<div>
-			<p>published: {{post.published_date}}</p>
-			<h1><a href="">{{post.title}}</a></h1>
-			<p>{{post.text|linebreaks}}</p>
+					<div class="post">
 
-		</div>
-		
-			{% endfor %}	
+						<div class="date">
+							<p>published: {{post.published_date}}</p>
+						</div>
 
-	</body>
-</html>
+						<h1><a href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></h1>
+						<p>{{post.text|linebreaks}}</p>
+
+					</div>
+
+				{% endfor %}
+
+
+	{% endblock %}
